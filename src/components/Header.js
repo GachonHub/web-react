@@ -3,7 +3,9 @@ import style from './Header.module.css';
 import '../constants/main.css'
 
 import logoImage from "../assets/main/Logo.svg"
-// import Suffix from "../assets/main/LogoSuffix.svg"
+
+import { useLocation, Link } from 'react-router-dom';
+
 
 function MenuBar({isBottomOpend, size}) {
     return(
@@ -16,14 +18,29 @@ function MenuBar({isBottomOpend, size}) {
     );
 }
 
+function CategoryRendering() {//react function
+    var isClicked = useLocation().pathname;
+    const mainCategory = [["Ranking", "/ranking", "L"], ["Community", "/community", "L"], ["Profile", "/profile", "L"], ["Login", "/login", "R"], ["Help", "/help", "R"]];
+    const result = [];
 
+    for (let i=0; i<mainCategory.length; i++) {
+        result.push(            
+        <Link to={mainCategory[i][1]}>
+            <div className={`${style.category} ${(mainCategory[i][2] === "L") ? style.categoryOnLeft : style.categoryOnRight} ${style.mainCategory} ${(isClicked === mainCategory[i][1]) ? style.isCheckedCategory : ""}`}>
+                {mainCategory[i][0]}
+            </div>
+        </Link>
+        );
+    }
+    
+    return result;
+}
 export class Header extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            isBottomOpend : false,
-            isClicked : 1
+            isBottomOpend : false
         };
     }
 
@@ -35,24 +52,7 @@ export class Header extends React.Component {
 
         return (
             <div className={style.header} style={defaultSize}>
-                <div className={`${style.category} ${style.categoryOnLeft} ${style.mainCategory}`}>Ranking</div>
-                {/* <SuffixImg></SuffixImg> */}
-
-
-                <div className={`${style.category} ${style.categoryOnLeft} ${style.mainCategory}`}
-                    onClick={() => this.setState({isBottomOpend: !isBottomOpend})}>Community</div>
-
-                <div className={`${style.category} ${style.categoryOnLeft} ${style.mainCategory}`}>Profile</div>
-
-                <div className={`${style.category} ${style.categoryOnRight} ${style.mainCategory}`}
-                    onClick={() => this.setState({isClicked: 4})}
-                >Login</div>
-
-                <div className={`${style.category} ${style.categoryOnRight} ${style.mainCategory}`}
-                    onClick={() => this.setState({isClicked: 5})}
-                >Help</div>
-
-                
+                <CategoryRendering></CategoryRendering>
                 <MenuBar isBottomOpend={isBottomOpend} size={defaultSize}></MenuBar>
 
                 <img className={style.logo} style={imageMargin} src={logoImage} alt="가천허브 로고"></img>
