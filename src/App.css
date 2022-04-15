@@ -10,8 +10,15 @@
 }
 
 @font-face { 
-  font-family: "SF Mono";
+  font-family: "SF Mono Regular";
   font-weight: 200;
   font-style: normal;
-  src: url(https://github.com/supercomputra/SF-Mono-Font/blob/1409ae79074d204c284507fef9e479248d5367c1/SFMono-Medium.otf);
+  src: url("./fonts/SFMono-Regular.otf") format('truetype')
+}
+
+@font-face {
+  font-family: "Nanum Gothic";
+  font-weight: 100;
+  font-style: normal;
+  src: url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
 }
