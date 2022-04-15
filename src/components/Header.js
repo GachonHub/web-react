@@ -8,8 +8,10 @@ import logoImage from "../assets/main/Logo.svg"
 function MenuBar({isBottomOpend, size}) {
     return(
         <div className={`${isBottomOpend ? style.openMenu : style.hideMenu} ${style.menuBar}`} style={size}>
-            <div className={`${style.category} ${style.categoryOnLeft}`}>Community</div>
-            <div className={`${style.category} ${style.categoryOnLeft}`}>Profile</div>
+            <div className={`${style.category} ${style.categoryOnLeft} ${style.subCategory}`}>스터디</div>
+            <div className={`${style.category} ${style.categoryOnLeft} ${style.subCategory}`}>동아리</div>
+            <div className={`${style.category} ${style.categoryOnLeft} ${style.subCategory}`}>공모전</div>
+            <div className={`${style.category} ${style.categoryOnLeft} ${style.subCategory}`}>질문게시판</div>
         </div>
     );
 }
@@ -33,20 +35,20 @@ export class Header extends React.Component {
 
         return (
             <div className={style.header} style={defaultSize}>
-                <div className={`${style.category} ${style.categoryOnLeft}`}>Ranking</div>
+                <div className={`${style.category} ${style.categoryOnLeft} ${style.mainCategory}`}>Ranking</div>
                 {/* <SuffixImg></SuffixImg> */}
 
 
-                <div className={`${style.category} ${style.categoryOnLeft}`}
+                <div className={`${style.category} ${style.categoryOnLeft} ${style.mainCategory}`}
                     onClick={() => this.setState({isBottomOpend: !isBottomOpend})}>Community</div>
 
-                <div className={`${style.category} ${style.categoryOnLeft}`}>Profile</div>
+                <div className={`${style.category} ${style.categoryOnLeft} ${style.mainCategory}`}>Profile</div>
 
-                <div className={`${style.category} ${style.categoryOnRight}`}
+                <div className={`${style.category} ${style.categoryOnRight} ${style.mainCategory}`}
                     onClick={() => this.setState({isClicked: 4})}
                 >Login</div>
 
-                <div className={`${style.category} ${style.categoryOnRight}`}
+                <div className={`${style.category} ${style.categoryOnRight} ${style.mainCategory}`}
                     onClick={() => this.setState({isClicked: 5})}
                 >Help</div>
 
