@@ -16,9 +16,7 @@
   src: url("./fonts/SFMono-Regular.otf") format('truetype')
 }
 
-@font-face {
-  font-family: "Nanum Gothic";
-  font-weight: 100;
-  font-style: normal;
-  src: url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+.nanumgothic * {
+ font-family: 'Nanum Gothic', sans-serif;
 }
