@@ -11,8 +11,6 @@ function App() {
       <BrowserRouter> 
         <Header></Header>
           <Routes>
-            <Route path="/ranking" element={<NotFoundPage />}></Route>
-            <Route path="/community" element={<NotFoundPage />}></Route>
             <Route path="*" element={<NotFoundPage />}></Route>
           </Routes>
         <Footer></Footer>
