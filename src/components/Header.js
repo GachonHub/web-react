@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import style from './Header.module.css';
 import '../constants/main.css'
 
 import logoImage from "../assets/main/Logo.svg"
 
-import { useLocation, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 function MenuBar({isBottomOpend, size}) {
@@ -18,22 +18,9 @@ function MenuBar({isBottomOpend, size}) {
     );
 }
 
-function CategoryRendering() {//react function
-    var isClicked = useLocation().pathname;
-    const mainCategory = [["Ranking", "/ranking", "L"], ["Community", "/community", "L"], ["Profile", "/profile", "L"], ["Login", "/login", "R"], ["Help", "/help", "R"]];
-    const result = [];
-
-    for (let i=0; i<mainCategory.length; i++) {
-        result.push(            
-        <Link to={mainCategory[i][1]}>
-            <div className={`${style.category} ${(mainCategory[i][2] === "L") ? style.categoryOnLeft : style.categoryOnRight} ${style.mainCategory} ${(isClicked === mainCategory[i][1]) ? style.isCheckedCategory : ""}`}>
-                {mainCategory[i][0]}
-            </div>
-        </Link>
-        );
-    }
-    
-    return result;
+function GetLocation(){
+    const val = useState("0");
+    return val;
 }
 export class Header extends React.Component {
 
@@ -41,20 +28,38 @@ export class Header extends React.Component {
         super(props);
         this.state = {
             isBottomOpend : false
-        };
+        }
     }
 
     render() {
         const width = window.screen.width;
         const defaultSize = {width : width};
-        const { isBottomOpend } = this.state;
         const imageMargin = {left: width/2, marginLeft: '-110px'};
+        const mainCategory = [["Ranking", "/ranking", "L"], ["Community", "/community", "L"], ["Profile", "/profile", "L"], ["Login", "/login", "R"], ["Help", "/help", "R"]];
+
+        console.log(this.props);
+        var isBottomOpend = this.state.isBottomOpend;
+
+        var time="";
+
+        // const val = <GetLocation></GetLocation>;
 
         return (
             <div className={style.header} style={defaultSize}>
-                <CategoryRendering></CategoryRendering>
-                <MenuBar isBottomOpend={isBottomOpend} size={defaultSize}></MenuBar>
-
+            {
+                mainCategory.map(item => 
+                    (
+                        <Link key={item[0]} to={item[1]}>
+                            <div key={item[0]} className={`${style.category} ${(item[2] === "L") ? style.categoryOnLeft : style.categoryOnRight} ${style.mainCategory} ${(time === item[1]) ? style.isCheckedCategory : undefined}`}
+                                onClick={() => (item[0] === "Community") ? (this.setState({isBottomOpend: !isBottomOpend})) : undefined} >
+                                {item[0]}
+                            </div>
+                        </Link>
+                    )
+                )
+            }
+            <GetLocation></GetLocation>
+            <MenuBar isBottomOpend={isBottomOpend} size={defaultSize}></MenuBar>
                 <img className={style.logo} style={imageMargin} src={logoImage} alt="가천허브 로고"></img>
             </div>
         );
