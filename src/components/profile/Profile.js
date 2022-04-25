@@ -1,8 +1,40 @@
 import React from 'react'
 import * as P from './ProfileStyle'
 
+import RepositoryBox from './repository/RepositoryBox'
 
+const GetMainRepository = () => {
+    const result = [];
+    const repos = P.data.repos;
+
+    var i = 1;
+        
+    for (let index = 0; index < repos.length; index++) {
+        if (repos[index].main) {
+            result.push(<RepositoryBox num={i++} data={repos[index]} />);
+        }
+    }
+
+    if (i === 1) {
+        result.pop();
+        return(
+            <P.emptyBody>
+                프로필 설정에서 메인 레포지토리를 등록해보세요.<br></br>
+                레포지토리가 없다면 깃허브에서 첫 레포지토리를 등록해보세요!
+            </P.emptyBody>
+        );
+    } else {
+        return(
+            <P.RepositoryBoxDiv>
+                {result}
+            </P.RepositoryBoxDiv>
+        );
+    }
+
+}
 export class Profile extends React.Component {
+
+
 
     render() {
         return (
@@ -31,10 +63,10 @@ export class Profile extends React.Component {
                     </P.description>
                 </P.Main>
                 <P.Repository>
-                    <P.mainProfile>
+                    <P.BodyTitle>
                         레포지토리
-                    </P.mainProfile>
-                    
+                    </P.BodyTitle>
+                    <GetMainRepository />
                 </P.Repository>
             </P.Container>
         );

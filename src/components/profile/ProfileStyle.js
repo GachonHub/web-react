@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import * as C from '../../constants/mainStyle'
 
 export const Container = styled.div`
+    font-family: 'Nanum Gothic', sans-serif;
     padding-top: 50px;
     width: 864px;
     height: 100vh;
@@ -61,15 +62,40 @@ export const basicProfile = styled.div`
 `
 
 export const Repository = styled.div`
-    border: 1px solid black;
-    margin-top : 30px;
     margin-left : auto;
     margin-right : auto;
     height: 130px;
     width: 90%;
+`
+
+export const BodyTitle = styled(mainProfile)`
+    margin-top: 30px;
+    margin-bottom: 10px;
     ${C.basicFont}
 `
 
+export const RepositoryBoxDiv = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "box-1 box-2 box-3";
+    grid-column-gap: 30px;
+    width: 100%;
+`
+
+
+export const emptyBody = styled.div`
+    width: 100%;
+    height: 100%;
+    font-size: 15px;
+    font-weight: 600;
+    background-color: white;
+    border: 1px solid #DEE2E6;
+    border-radius: 4px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+`
 
 export const data = {
     id: 50989437,
