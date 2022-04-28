@@ -1,5 +1,7 @@
 import React from 'react'
 import * as P from './ProfileStyle'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 import RepositoryBox from './repository/RepositoryBox'
 
@@ -32,11 +34,19 @@ const GetMainRepository = () => {
     }
 
 }
+
+const ReadMarkdown = (props) => {
+    const blankStyle = {textAlign : "center"};
+    if (props.readme === undefined) {
+        return <div style={blankStyle}>{props.userName + " 레포지토리에서 README.md를 작성해보세요!"}</div>;
+    } 
+    return <ReactMarkdown style={P.MarkDown} children={P.mainReadMe} remarkPlugins={[remarkGfm]} ></ReactMarkdown>;
+}
 export class Profile extends React.Component {
 
 
-
     render() {
+        
         return (
             <P.Container>
                 <P.Main>
@@ -68,6 +78,16 @@ export class Profile extends React.Component {
                     </P.BodyTitle>
                     <GetMainRepository />
                 </P.Repository>
+                <P.Readme>
+                    <P.BodyTitle>
+                        ReadMe
+                    </P.BodyTitle>
+                    <P.MarkDown>
+                            <ReadMarkdown readme={P.mainReadMe} userName={P.userName}></ReadMarkdown>
+                        
+                    </P.MarkDown>
+
+                </P.Readme>
             </P.Container>
         );
     }

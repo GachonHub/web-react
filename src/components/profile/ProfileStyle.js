@@ -82,6 +82,12 @@ export const RepositoryBoxDiv = styled.div`
     width: 100%;
 `
 
+export const Readme = styled.div`
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+
+`
 
 export const emptyBody = styled.div`
     width: 100%;
@@ -97,6 +103,44 @@ export const emptyBody = styled.div`
     justify-content: center;
 `
 
+export const MarkDown = styled.div`
+    padding: 20px;
+    font-size: 12px;
+    background-color: white;
+    border-radius: 4px;
+    border: 1px solid #DEE2E6;
+`
+
+
+export const userName = `jaeesu`;
+export const mainReadMe = undefined;
+
+// export const mainReadMe = `## Seo Jaehui 👋   
+
+
+// ### 📔 약력
+
+
+// * 가천대학교 컴퓨터공학과 졸업 (2019.03 ~ 2022.02)
+
+
+// * Central MakeUs Challenge (CMC) 9기 Server 파트 수료 (2022.02 ~ 2022.04)
+
+
+// ### 😃 소개, 공부해 보고 싶은 것
+
+// * 우연히 서버 개발을 하게 되었다가 재밌어서 계속 공부하는 중
+
+// * Spring, Java 공부 중
+
+
+// ### 사이트, 블로그
+
+// * notion : https://www.notion.so/09267ad39b54480da4fd1f6efc91c5f7
+// * tistory : https://jaeesu.tistory.com/`;
+
+
+// https://raw.githubusercontent.com/jaeesu/jaeesu/master/README.md
 export const data = {
     id: 50989437,
     nickname: "jaeesu",
@@ -117,6 +161,18 @@ export const data = {
     }
     ],
     repos: [
+        //custom
+    {
+    id: 391266256,
+    url: "https://github.com/jaeesu/jaeesu",
+    raw_url: "https://raw.githubusercontent.com/jaeesu/jaeesu/master/README.md",
+    name: "algorithm",
+    fullName: "jaeesu/algorithm",
+    description: null,
+    lang: null,
+    main: false,
+    updatedAt: "2021-07-31 14:16:09.0"
+    },
     {
     id: 391266256,
     url: "https://github.com/jaeesu/algorithm",
