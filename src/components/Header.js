@@ -31,13 +31,22 @@ export class Header extends React.Component {
         const item = props.item;
     
         for (let i=0; i<item.length; i++) {
-            res.push(
-                <Link key={item[i][0]} to={item[i][1]}>
+            if (item[i][0] === "Help" || item[i][0] === "Community") {
+                res.push(
                     <P.Category onClick={this.clickEvent} key={item[i][0]} id={item[i][0]}>
                         {item[i][0]}
                     </P.Category>
-                </Link>
-            );
+                );
+            } else {
+                res.push(
+                    <Link key={item[i][0]} to={item[i][1]}>
+                        <P.Category onClick={this.clickEvent} key={item[i][0]} id={item[i][0]}>
+                            {item[i][0]}
+                        </P.Category>
+                    </Link>
+                );
+            }
+
         }
 
 
@@ -56,7 +65,6 @@ export class Header extends React.Component {
                     <this.GetMainCategory item={list}></this.GetMainCategory>
                 </P.Logo>
                 
-                {/* <GetMenuBar category={this.state.category} size={window.screen.width}></GetMenuBar> */}
                 <MenuBar isOpened={this.state.isOpened} category={this.state.category} size={window.screen.width}></MenuBar>
                 
             </P.Header>
