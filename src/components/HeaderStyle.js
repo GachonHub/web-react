@@ -25,6 +25,11 @@ export const Category = styled.span`
     float: right;
     margin-top: 24px;
     margin-left: 30px;
-    color: black;
+    color: gray;
     cursor: pointer;
+
+    &:hover {
+        color: black;
+    }
+
 `

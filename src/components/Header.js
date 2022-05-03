@@ -14,15 +14,14 @@ export class Header extends React.Component {
         super();
         this.state = {
             isOpened : false,
-            category : "Ranking"
+            category : "Ranking",
         }
-    }
+    }   
 
     clickEvent = (e) => {
         if (e.target.id === "Community" || e.target.id === "Help") {
-            this.setState({isOpened: !this.state.isOpened});
             this.setState({category: e.target.id});
-
+            this.setState({isOpened: !this.state.isOpened});
         }
     }
 
@@ -33,7 +32,8 @@ export class Header extends React.Component {
         for (let i=0; i<item.length; i++) {
             if (item[i][0] === "Help" || item[i][0] === "Community") {
                 res.push(
-                    <P.Category onClick={this.clickEvent} key={item[i][0]} id={item[i][0]}>
+                    <P.Category onClick={this.clickEvent}
+                        key={item[i][0]} id={item[i][0]}>
                         {item[i][0]}
                     </P.Category>
                 );
@@ -57,8 +57,8 @@ export class Header extends React.Component {
 
         const list = [["Login", "/login"], ["Help", "/help"], ["Profile", "/profile"], ["Community", "/community"], ["Ranking", "/ranking"]];
 
-
         return (
+            
             <P.Header headerWidth={window.screen.width}>
                 <P.Logo>
                     <P.LogoImg src={logoImage}></P.LogoImg>
