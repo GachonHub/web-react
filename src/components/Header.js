@@ -1,67 +1,74 @@
-import React, { useState } from 'react';
-import style from './Header.module.css';
+import React from 'react';
 import '../constants/mainStyle.js'
 
 import logoImage from "../assets/main/Logo.svg"
 
+import * as P from "./HeaderStyle"
+
 import { Link } from 'react-router-dom';
+import {MenuBar} from './MenuBar'
 
-
-function MenuBar({isBottomOpend, size}) {
-    return(
-        <div className={`${isBottomOpend ? style.openMenu : style.hideMenu} ${style.menuBar}`} style={size}>
-            <div className={`${style.category} ${style.categoryOnLeft} ${style.subCategory}`}>스터디</div>
-            <div className={`${style.category} ${style.categoryOnLeft} ${style.subCategory}`}>동아리</div>
-            <div className={`${style.category} ${style.categoryOnLeft} ${style.subCategory}`}>공모전</div>
-            <div className={`${style.category} ${style.categoryOnLeft} ${style.subCategory}`}>질문게시판</div>
-        </div>
-    );
-}
-
-function GetLocation(){
-    const val = useState("0");
-    return val;
-}
 export class Header extends React.Component {
 
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
-            isBottomOpend : false
+            isOpened : false,
+            category : "Ranking",
+        }
+    }   
+
+    clickEvent = (e) => {
+        if (e.target.id === "Community" || e.target.id === "Help") {
+            this.setState({category: e.target.id});
+            this.setState({isOpened: !this.state.isOpened});
         }
     }
 
+    GetMainCategory = (props) => {
+        const res = [];
+        const item = props.item;
+    
+        for (let i=0; i<item.length; i++) {
+            if (item[i][0] === "Help" || item[i][0] === "Community") {
+                res.push(
+                    <P.Category onClick={this.clickEvent}
+                        key={item[i][0]} id={item[i][0]}>
+                        {item[i][0]}
+                    </P.Category>
+                );
+            } else {
+                res.push(
+                    <Link key={item[i][0]} to={item[i][1]}>
+                        <P.Category onClick={this.clickEvent} key={item[i][0]} id={item[i][0]}>
+                            {item[i][0]}
+                        </P.Category>
+                    </Link>
+                );
+            }
+
+        }
+
+
+        return res;
+    }
+
     render() {
-        const width = window.screen.width;
-        const defaultSize = {width : width};
-        const imageMargin = {left: width/2, marginLeft: '-110px'};
-        const mainCategory = [["Ranking", "/ranking", "L"], ["Community", "/community", "L"], ["Profile", "/profile", "L"], ["Login", "/login", "R"], ["Help", "/help", "R"]];
 
-        console.log(this.props);
-        var isBottomOpend = this.state.isBottomOpend;
-
-        var time="";
-
-        // const val = <GetLocation></GetLocation>;
+        const list = [["Login", "/login"], ["Help", "/help"], ["Profile", "/profile"], ["Community", "/community"], ["Ranking", "/ranking"]];
 
         return (
-            <div className={style.header} style={defaultSize}>
-            {
-                mainCategory.map(item => 
-                    (
-                        <Link key={item[0]} to={item[1]}>
-                            <div key={item[0]} className={`${style.category} ${(item[2] === "L") ? style.categoryOnLeft : style.categoryOnRight} ${style.mainCategory} ${(time === item[1]) ? style.isCheckedCategory : undefined}`}
-                                onClick={() => (item[0] === "Community") ? (this.setState({isBottomOpend: !isBottomOpend})) : undefined} >
-                                {item[0]}
-                            </div>
-                        </Link>
-                    )
-                )
-            }
-            <GetLocation></GetLocation>
-            <MenuBar isBottomOpend={isBottomOpend} size={defaultSize}></MenuBar>
-                <img className={style.logo} style={imageMargin} src={logoImage} alt="가천허브 로고"></img>
-            </div>
+            
+            <P.Header headerWidth={window.screen.width}>
+                <P.Logo>
+                    <P.LogoImg src={logoImage}></P.LogoImg>
+                    <this.GetMainCategory item={list}></this.GetMainCategory>
+                </P.Logo>
+                
+                <MenuBar isOpened={this.state.isOpened} category={this.state.category} size={window.screen.width}></MenuBar>
+                
+            </P.Header>
         );
     }
 }
+

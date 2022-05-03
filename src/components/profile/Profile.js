@@ -46,6 +46,8 @@ export class Profile extends React.Component {
 
 
     render() {
+        alert("dd");
+        alert(this.state.his);
         
         return (
             <P.Container>
