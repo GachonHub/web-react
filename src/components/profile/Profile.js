@@ -1,5 +1,6 @@
 import React from 'react'
 import * as P from './ProfileStyle'
+import * as D from './ProfileMockData'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
@@ -7,7 +8,7 @@ import RepositoryBox from './repository/RepositoryBox'
 
 const GetMainRepository = () => {
     const result = [];
-    const repos = P.data.repos;
+    const repos = D.data.repos;
 
     var i = 1;
         
@@ -40,38 +41,35 @@ const ReadMarkdown = (props) => {
     if (props.readme === undefined) {
         return <div style={blankStyle}>{props.userName + " 레포지토리에서 README.md를 작성해보세요!"}</div>;
     } 
-    return <ReactMarkdown style={P.MarkDown} children={P.mainReadMe} remarkPlugins={[remarkGfm]} ></ReactMarkdown>;
+    return <ReactMarkdown style={P.MarkDown} children={D.mainReadMe} remarkPlugins={[remarkGfm]} ></ReactMarkdown>;
 }
 export class Profile extends React.Component {
 
 
     render() {
-        alert("dd");
-        alert(this.state.his);
-        
         return (
             <P.Container>
                 <P.Main>
                     <P.imgDiv>
-                        <P.img src={P.data.avatarUrl} alt='profile image'></P.img>
+                        <P.img src={D.data.avatarUrl} alt='profile image'></P.img>
                     </P.imgDiv>
                     <P.profileDiv>
                         <P.mainProfile>
-                            {P.data.nickname} {(P.data.name !== undefined) ? P.data.name : undefined}
+                            {D.data.nickname} {(D.data.name !== undefined) ? D.data.name : undefined}
                             <img src={'assets/profile/box-arrow-right.svg'} alt="update"></img>
                         </P.mainProfile>
                         <P.basicProfile>
-                            {P.data.major}
+                            {D.data.major}
                         </P.basicProfile>
                         <P.basicProfile>
-                            {P.data.company}
+                            {D.data.company}
                         </P.basicProfile>
                         <P.basicProfile>
-                            {(P.data.graduate) ? "졸업" : "재학"}
+                            {(D.data.graduate) ? "졸업" : "재학"}
                         </P.basicProfile>
                     </P.profileDiv>
                     <P.description>
-                        {P.data.description}
+                        {D.data.description}
                     </P.description>
                 </P.Main>
                 <P.Repository>
@@ -85,7 +83,7 @@ export class Profile extends React.Component {
                         ReadMe
                     </P.BodyTitle>
                     <P.MarkDown>
-                            <ReadMarkdown readme={P.mainReadMe} userName={P.userName}></ReadMarkdown>
+                            <ReadMarkdown readme={D.mainReadMe} userName={D.userName}></ReadMarkdown>
                         
                     </P.MarkDown>
 
