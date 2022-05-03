@@ -112,3 +112,8 @@ export const MarkDown = styled.div`
     border-radius: 4px;
     border: 1px solid #DEE2E6;
 `
+
+
+export const arrowImg = styled.img`
+    margin-left: 10px;
+`

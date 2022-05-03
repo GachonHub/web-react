@@ -56,7 +56,7 @@ export class Profile extends React.Component {
                     <P.profileDiv>
                         <P.mainProfile>
                             {D.data.nickname} {(D.data.name !== undefined) ? D.data.name : undefined}
-                            <img src={'assets/profile/box-arrow-right.svg'} alt="update"></img>
+                            <P.arrowImg src={require('../../assets/profile/box-arrow-right.svg').default} alt="update"></P.arrowImg>
                         </P.mainProfile>
                         <P.basicProfile>
                             {D.data.major}
