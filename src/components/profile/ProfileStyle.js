@@ -4,18 +4,20 @@ import * as C from '../../constants/mainStyle'
 export const Container = styled.div`
     font-family: 'Nanum Gothic', sans-serif;
     padding-top: 50px;
-    width: 864px;
+    width: ${props => props.width * 0.8}px;
     height: 100vh;
     background-color: #F8F9FA;
     margin: auto;
+    border-radius: 15px;
+    margin-top: 30px;
 `
 
 export const Main = styled.div`
     display: grid;
-    grid-template-columns: 130px 250px 350px;
+    grid-template-columns: 120px 300px ;
     grid-template-areas: "img profile description";
     width: 90%;
-    height: 150px;
+    height: 120px;
     border: 1px solid #DEE2E6;
     margin-left: auto;
     margin-right: auto;

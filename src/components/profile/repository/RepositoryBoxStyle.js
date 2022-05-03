@@ -4,7 +4,7 @@ export const container = styled.div`
     display: inline-block;
     width: 100%;
     height: 90px;
-    border: 0.5px solid #DEE2E6;
+    border: 1px solid #DEE2E6;
     border-radius: 4px;
     grid-area: ${props => "box-" + props.num};
     text-align: center;
@@ -14,7 +14,7 @@ export const container = styled.div`
 export const repositoryHeader = styled.div`
     text-align: left;
     background-color: #DEE2E6;
-    height: 30px;
+    height: 25px;
     width: 100%;
     border-radius: 4px 4px 0 0 4px 4px 0 0;
 `

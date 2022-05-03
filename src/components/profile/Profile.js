@@ -48,7 +48,7 @@ export class Profile extends React.Component {
 
     render() {
         return (
-            <P.Container>
+            <P.Container width={window.screen.width}>
                 <P.Main>
                     <P.imgDiv>
                         <P.img src={D.data.avatarUrl} alt='profile image'></P.img>
